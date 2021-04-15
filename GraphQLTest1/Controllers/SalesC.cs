@@ -55,7 +55,7 @@ namespace GraphQLTest1.Controllers
                         serialnumber = 1;
                         foreach (Saleslines line in sw.saleslines)
                         {
-                            // mgt.Add(new Materialmanagement { Traid = id, Sno = serialnumber, Itemid = line.Itemid, Qtyin = line.Qty, Qtyout = 0, Tratype = 2 });
+                            mgt.Add(new Materialmanagement { Traid = id, Sno = serialnumber, Itemid = line.Itemname, Qtyin = line.Qty, Qtyout = 0, Tratype = 2 });
                             serialnumber++;
 
                         }
@@ -98,7 +98,7 @@ namespace GraphQLTest1.Controllers
                         serialnumberu = 1;
                         foreach (Saleslines line in sw.saleslines)
                         {
-                            // mgtt.Add(new Materialmanagement { Traid = id2, Sno = serialnumberu, Itemid = line.itemid, Qtyin = 0, Qtyout = line.Qty, Tratype = 2 });
+                            mgtt.Add(new Materialmanagement { Traid = id2, Sno = serialnumberu, Itemid = line.Itemname, Qtyin = 0, Qtyout = line.Qty, Tratype = 2 });
                             serialnumberu++;
 
                         }

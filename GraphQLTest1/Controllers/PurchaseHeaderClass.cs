@@ -56,7 +56,7 @@ namespace GraphQLTest1.Controllers
                         serialnumber = 1;
                         foreach (Purchaseslines line in phw.purchaselines)
                         {
-                           //  mgt.Add(new Materialmanagement { Traid = id, sno = serialnumber, itemid = line.Pitem, Qtyin = line., Qtyout = 0, Tratype = 1 });
+                            mgt.Add(new Materialmanagement { Traid = id, Sno = serialnumber, Itemid = line.Pitem, Qtyin = line.Qty, Qtyout = 0, Tratype = 1 });
                             serialnumber++;
 
                         }
