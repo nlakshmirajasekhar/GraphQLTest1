@@ -9,6 +9,19 @@ using GraphQLTest1.Models1;
 
 namespace GraphQLTest1.Controllers
 {
+    public class purchasewrapper
+    {
+        public Purchasesheader purchasesheader { get; set; }
+        public List<Purchaseslines> purchaseslines { get; set; }
+    }
+    public class salesWrapper
+    {
+        public Salesheader salesheader { get; set; }
+        public List<Saleslines> salesline { get; set; }
+    
+    }
+
+
     [ExtendObjectType(Name ="Query")]
     public class Queryclass
     {
@@ -24,29 +37,43 @@ namespace GraphQLTest1.Controllers
         {
             return db.Itemgroups;
         }
-        public IQueryable<Purchasesheader> GetPurchaseheader([Service] ShopInventory1Context db)
+        public Itemgroups GetItemGroupsbyId([Service] ShopInventory1Context db,int grpid)
         {
-            return db.Purchasesheader;
+            return db.Itemgroups.Where(a=>a.Grpid==grpid).FirstOrDefault();
         }
-        public IQueryable<Purchaseslines> GetPurchaselines([Service] ShopInventory1Context db)
+     
+
+        // returning the purchase header and purchase lines based on Mir
+        public purchasewrapper GetPurchaselines([Service] ShopInventory1Context db,int MIR,purchasewrapper pwr)
         {
-            return db.Purchaseslines;
+            pwr.purchasesheader = db.Purchasesheader.Where(a => a.Mir == MIR).FirstOrDefault();
+            pwr.purchaseslines = db.Purchaseslines.Where(a => a.Mir == MIR).ToList();
+            return pwr;
         }
-        public IQueryable<Salesheader> GetSalesheader([Service] ShopInventory1Context db)
+
+        //returning the sales header and sales lines based on Billno
+        public salesWrapper GetSaleslines([Service] ShopInventory1Context db, int Bill, salesWrapper swr)
         {
-            return db.Salesheader;
+            swr.salesheader = db.Salesheader.Where(a => a.Billno == Bill).FirstOrDefault();
+            swr.salesline = db.Saleslines.Where(a => a.Billno == Bill).ToList();
+            return swr;
         }
-        public IQueryable<Saleslines> GetSaleslines([Service] ShopInventory1Context db)
-        {
-            return db.Saleslines;
-        }
+
         public IQueryable<Pricelist> GetPricelist([Service] ShopInventory1Context db)
         {
             return db.Pricelist;
         }
+        public Pricelist GetPricelistbyid([Service] ShopInventory1Context db,int pid)
+        {
+            return db.Pricelist.Where(a=>a.Itemid==pid).FirstOrDefault();
+        }
         public IQueryable<Materialmanagement> GetMaterialmanagements([Service] ShopInventory1Context db)
         {
             return db.Materialmanagement;
+        }
+        public List<Materialmanagement> GetMaterialmanagementsByid([Service] ShopInventory1Context db,int ptype)
+        {
+            return db.Materialmanagement.Where(a => a.Tratype == ptype).ToList();
         }
     }
 }
