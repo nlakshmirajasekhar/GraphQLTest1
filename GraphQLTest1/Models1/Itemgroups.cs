@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GraphQLTest1.Models
+namespace GraphQLTest1.Models1
 {
-    public partial class ItemGroups
+    public partial class Itemgroups
     {
-        public ItemGroups()
+        public Itemgroups()
         {
             Items = new HashSet<Items>();
         }

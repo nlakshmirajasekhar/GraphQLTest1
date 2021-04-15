@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-using GraphQLTest1.Models;
+using GraphQLTest1.Models1;
 using GraphQLTest1.Controllers;
 
 namespace GraphQLTest1
@@ -41,8 +41,8 @@ namespace GraphQLTest1
             services.AddCors();
 
             services
-            .AddDbContext<inventory1Context>()
-
+            .AddDbContext<ShopInventory1Context>()
+            
 
 
             .AddDataLoaderRegistry()
@@ -56,7 +56,13 @@ namespace GraphQLTest1
 
 
                         .AddMutationType(d => d.Name("Mutation"))
-                      .AddType<MutationClass>()
+                      .AddType<Pricelist>()
+                       .AddType<ItemGroup>()
+                         .AddType<ItemsC>()
+                         .AddType<PurchaseHeaderClass>()
+                          .AddType<SalesC>()
+
+
 
                        .AddAuthorizeDirectiveType()
                       .BindClrType<string, StringType>()
