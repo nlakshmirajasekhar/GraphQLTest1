@@ -5,42 +5,46 @@ using System.Threading.Tasks;
 using HotChocolate;
 using HotChocolate.Types;
 using HotChocolate.Types.Relay;
-using GraphQLTest1.Models;
+using GraphQLTest1.Models1;
 
 namespace GraphQLTest1.Controllers
 {
     [ExtendObjectType(Name ="Query")]
     public class Queryclass
     {
-        public IQueryable<Items> GetItems([Service] inventory1Context db)
+        public IQueryable<Items> GetItems([Service] ShopInventory1Context db)
         {
             return db.Items;
         }
-        public IQueryable<ItemGroups> GetItemGroups([Service] inventory1Context db)
+         public Items GetItemsbyId([Service] ShopInventory1Context db,int id)
         {
-            return db.ItemGroups;
+            return db.Items.Where(a=>a.Itemid==id).FirstOrDefault();
         }
-        public IQueryable<Purchaseheader> GetPurchaseheader([Service] inventory1Context db)
+        public IQueryable<Itemgroups> GetItemGroups([Service] ShopInventory1Context db)
         {
-            return db.Purchaseheader;
+            return db.Itemgroups;
         }
-        public IQueryable<Purchaselines> GetPurchaselines([Service] inventory1Context db)
+        public IQueryable<Purchasesheader> GetPurchaseheader([Service] ShopInventory1Context db)
         {
-            return db.Purchaselines;
+            return db.Purchasesheader;
         }
-        public IQueryable<Salesheader> GetSalesheader([Service] inventory1Context db)
+        public IQueryable<Purchaseslines> GetPurchaselines([Service] ShopInventory1Context db)
+        {
+            return db.Purchaseslines;
+        }
+        public IQueryable<Salesheader> GetSalesheader([Service] ShopInventory1Context db)
         {
             return db.Salesheader;
         }
-        public IQueryable<Saleslines> GetSaleslines([Service] inventory1Context db)
+        public IQueryable<Saleslines> GetSaleslines([Service] ShopInventory1Context db)
         {
             return db.Saleslines;
         }
-        public IQueryable<PriceList> GetPricelist([Service] inventory1Context db)
+        public IQueryable<Pricelist> GetPricelist([Service] ShopInventory1Context db)
         {
-            return db.PriceList;
+            return db.Pricelist;
         }
-        public IQueryable<Materialmanagement> GetMaterialmanagements([Service] inventory1Context db)
+        public IQueryable<Materialmanagement> GetMaterialmanagements([Service] ShopInventory1Context db)
         {
             return db.Materialmanagement;
         }
